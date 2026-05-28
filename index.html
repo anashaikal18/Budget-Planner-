@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Budget Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="hero-tagline">Your Financial Clarity</p>
+        <h1 class="hero-title">Budget <span>Tracker</span></h1>
+        <p class="hero-sub">Track. Save. Thrive — every month.</p>
+      </div>
+    </header>
+
+    <!-- MAIN APP -->
+    <main class="app-container">
+      <!-- MONTH SELECTOR + SUMMARY CARDS -->
+      <section class="top-bar">
+        <div class="month-selector">
+          <label for="monthPicker">📅 Select Month</label>
+          <input type="month" id="monthPicker" />
+          <button id="loadMonthBtn" class="btn-primary">Load Month</button>
+        </div>
+        <div class="summary-cards">
+          <div class="card card-income">
+            <p class="card-label">Monthly Income</p>
+            <p class="card-value" id="summaryIncome">RM 0.00</p>
+            <button class="edit-inline" id="editIncomeBtn">✏️ Edit</button>
+          </div>
+          <div class="card card-budget">
+            <p class="card-label">Total Budgeted</p>
+            <p class="card-value" id="summaryBudget">RM 0.00</p>
+          </div>
+          <div class="card card-spent">
+            <p class="card-label">Total Spent</p>
+            <p class="card-value" id="summarySpent">RM 0.00</p>
+          </div>
+          <div class="card card-savings">
+            <p class="card-label">Savings</p>
+            <p class="card-value" id="summarySavings">RM 0.00</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROGRESS BAR -->
+      <section class="progress-section">
+        <div class="progress-label-row">
+          <span>Budget Used</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+      </section>
+
+      <!-- INCOME EDIT MODAL -->
+      <div class="modal-overlay hidden" id="incomeModal">
+        <div class="modal">
+          <h3>Edit Monthly Income</h3>
+          <input
+            type="number"
+            id="incomeInput"
+            placeholder="e.g. 1300"
+            min="0"
+            step="0.01"
+          />
+          <div class="modal-actions">
+            <button class="btn-primary" id="saveIncomeBtn">Save</button>
+            <button class="btn-ghost" id="cancelIncomeBtn">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CATEGORIES TABLE -->
+      <section class="table-section">
+        <div class="table-header-row">
+          <h2>Categories</h2>
+          <button class="btn-primary" id="addCategoryBtn">
+            + Add Category
+          </button>
+        </div>
+
+        <!-- ADD CATEGORY FORM -->
+        <div class="add-form hidden" id="addCategoryForm">
+          <input
+            type="text"
+            id="newCatName"
+            placeholder="Category name (e.g. Groceries)"
+          />
+          <input
+            type="number"
+            id="newCatBudget"
+            placeholder="Budget (RM)"
+            min="0"
+            step="0.01"
+          />
+          <input
+            type="number"
+            id="newCatSpending"
+            placeholder="Spending (RM)"
+            min="0"
+            step="0.01"
+          />
+          <div class="form-actions">
+            <button class="btn-primary" id="saveCategoryBtn">Add</button>
+            <button class="btn-ghost" id="cancelCategoryBtn">Cancel</button>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table id="budgetTable">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Budget (RM)</th>
+                <th>Spending (RM)</th>
+                <th>Remaining (RM)</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <!-- Rows injected by JS -->
+            </tbody>
+          </table>
+          <p class="empty-state hidden" id="emptyState">
+            No categories yet. Click "+ Add Category" to get started.
+          </p>
+        </div>
+      </section>
+
+      <!-- MONTHLY SAVINGS HISTORY -->
+      <section class="history-section">
+        <h2>📈 Monthly Savings History</h2>
+        <div class="history-grid" id="historyGrid">
+          <!-- Cards injected by JS -->
+        </div>
+        <p class="empty-state hidden" id="historyEmpty">
+          No history yet. Start tracking your months!
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Budget Tracker &copy; 2025 — Made with 💚</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
