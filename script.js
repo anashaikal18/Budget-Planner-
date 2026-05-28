@@ -58,7 +58,7 @@ function loadMonth(month) {
     monthData = {
       income: 1700,
       categories: [
-        { id: uid(), name: "Your Categories",               budget: 500,    spending: 0 }
+        { id: uid(), name: "eg: Your Categories",               budget: 500,    spending: 0 }
       ]
     };
     saveMonth();
